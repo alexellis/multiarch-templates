@@ -4,9 +4,15 @@ OpenFaaS multi-arch templates
 
 Notes:
 
-* The OpenFaaS CLI doesn't have a feature to invoke "buildx", Docker's next-gen container builder, so commands have to be run one by one.
-* An experimental flag is required for buildx`export DOCKER_CLI_EXPERIMENTAL=enabled`
-* `faas-cli build --shrinkwrap`, it generates a build context from the function's template and code.
+This relies on Docker's new `buildx` container builder and buildkit. A flag is required to enable buildx: `export DOCKER_CLI_EXPERIMENTAL=enabled`, then commands can be invoked as per below
+
+The basic workflow of the usual `faas-cli up` command invokes: `docker build`, `docker push` and the deploy code against the OpenFaaS gateway. These commands can also be run one-by-one.
+
+When it comes to using buildx with faas-cli, there's currently no direct support, however you can still use a feature of faas-cli called shrinkwrap to help. The command `faas-cli build --shrinkwrap` will create a new folder with a valid Docker build context - first laying down the template of choice, followed by the function's code.
+
+If you're looking for a HTTP-based template see: [OpenFaaS Golang HTTP templates](https://github.com/openfaas-incubator/golang-http-template)
+
+Suggestions on how to support buildx and a series of platforms in [faas-cli](https://github.com/openfaas/faas-cli) would be welcomed. [Join us on Slack](https://slack.openfaas.io/) in the #contributors channel
 
 ## Golang
 
