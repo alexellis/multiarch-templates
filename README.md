@@ -18,6 +18,8 @@ faas-cli new --lang go-multiarch $FN
 ### Build and push
 
 ```bash
+faas-cli build --shrinkwrap -f $FN.yml
+
 docker buildx create --use --name=multiarch --node=multiarch
 docker buildx build \
 	--platform linux/amd64,linux/arm/v7,linux/arm64 \
@@ -28,6 +30,8 @@ docker buildx build \
 ### Just build
 
 ```bash
+faas-cli build --shrinkwrap -f $FN.yml
+
 docker buildx create --use --name=multiarch --node=multiarch
 docker buildx build \
 --output "type=docker,push=false" \
