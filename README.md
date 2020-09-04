@@ -2,6 +2,12 @@
 
 OpenFaaS multi-arch templates
 
+Notes:
+
+* The OpenFaaS CLI doesn't have a feature to invoke "buildx", Docker's next-gen container builder, so commands have to be run one by one.
+* An experimental flag is required for buildx`export DOCKER_CLI_EXPERIMENTAL=enabled`
+* `faas-cli build --shrinkwrap`, it generates a build context from the function's template and code.
+
 ## Golang
 
 ### Create a new function
@@ -40,6 +46,12 @@ docker buildx build \
 
 ### Deploy your function
 
+The build above will work on amd64, RPi (armv7) and ARM64.
+
 ```bash
-faas-cli deploy --image $OPENFAAS_PREFIX/$FN:latest $FN
+faas-cli deploy --image $OPENFAAS_PREFIX/$FN:latest \
+  --name $FN
+
+curl http://127.0.0.1:8080/function/multiarch-fn -d "hi"
+Hello, Go. You said: hi
 ```
