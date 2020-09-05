@@ -61,3 +61,14 @@ faas-cli deploy --image $OPENFAAS_PREFIX/$FN:latest \
 curl http://127.0.0.1:8080/function/multiarch-fn -d "hi"
 Hello, Go. You said: hi
 ```
+
+## Node.js 12
+
+As per above, but change the template name:
+
+
+### Create a new function
+
+```bash
+faas-cli new --lang node12-multiarch $FN
+```
