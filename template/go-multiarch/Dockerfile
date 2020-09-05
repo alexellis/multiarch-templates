@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} openfaas/classic-watchdog:0.18.1 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} openfaas/classic-watchdog:0.18.1 as watchdog
 FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.13 as builder
 
 ARG TARGETPLATFORM
