@@ -16,6 +16,12 @@ Suggestions on how to support buildx and a series of platforms in [faas-cli](htt
 
 ## Golang
 
+You can also use these instructions with `golang-http` and `golang-middleware` after [this PR was merged](https://github.com/openfaas-incubator/golang-http-template/pull/48).
+
+```bash
+faas-cli template pull https://github.com/openfaas-incubator/golang-http-template
+```
+
 ### Create a new function
 
 ```bash
